@@ -1,0 +1,42 @@
+
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "backend",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-23",
+
+  "assets": {
+    "directory": "./public"
+  },
+
+  // Cloudflare Workers AI
+  "ai": {
+    "binding": "AI"
+  },
+
+  // Existing Durable Object
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "MyDurableObject",
+        "name": "MY_DURABLE_OBJECT"
+      }
+    ]
+  },
+
+  // Keep existing migration
+  "migrations": [
+    {
+      "new_sqlite_classes": [
+        "MyDurableObject"
+      ],
+      "tag": "v1"
+    }
+  ],
+
+  "observability": {
+    "enabled": true
+  },
+
+  "upload_source_maps": true
+}
